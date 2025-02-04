@@ -18,5 +18,6 @@ terraform {
     storage_account_name = "tfstatedinko"
     container_name       = "terraform-state"
     key                  = "prod.terraform.tfstate"
+    use_oidc             = true
   }
 }
