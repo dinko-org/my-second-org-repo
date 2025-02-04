@@ -55,6 +55,9 @@ jobs:
       - name: "Terraform Validate"
         run: terraform validate  
 
+      - name: "Terraform List State"
+        run: terraform state list
+      
       # Step 5: Terraform Plan
       - name: Terraform Plan
         run: terraform plan -out=tfplantest
