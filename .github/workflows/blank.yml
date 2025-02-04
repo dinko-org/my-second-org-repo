@@ -9,9 +9,6 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout Repo
-      - name: Checkout repository
-        uses: actions/checkout@v4
 
       # Step 2: Authenticate with Azure using OIDC (More Secure than Secrets)
       - name: Azure Login
@@ -24,6 +21,12 @@ jobs:
       - name: 'Run az commands'
         run: |
           az account show
+
+
+     # Step 1: Checkout Repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
       # Step 3: Set up Terraform
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
