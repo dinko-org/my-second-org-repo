@@ -10,7 +10,7 @@ resource "azurerm_storage_account" "example" {
 }
 
 resource "azurerm_storage_container" "vm_files" {
-  name = "vm-directory"
+  name = "tf-directory"
   #S storage_account_id    = azurerm_storage_account.example.id
   container_access_type = "private"
   #storage_account_name  = azurerm_storage_account.example.name
