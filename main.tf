@@ -15,7 +15,7 @@ provider "azurerm" {
 terraform {
   backend "azurerm" {
     resource_group_name  = "rg-dinko"
-    storage_account_name = "tfstatedinko"
+    storage_account_name = "tfstatefiledinko"
     container_name       = "terraform-state"
     key                  = "prod.terraform.tfstate"
     use_oidc             = true
