@@ -1,6 +1,10 @@
 name: Run Azure Login with OIDC
-on: 
-    workflow_dispatch
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'terraform/**'
 
 permissions:
   id-token: write
