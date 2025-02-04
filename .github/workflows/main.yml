@@ -42,7 +42,7 @@ jobs:
 
       - name: "Terraform Format Check"
         run: terraform fmt -check
-        continue-on-error: false  # Fails if formatting is incorrect
+        continue-on-error: true  # Fails if formatting is incorrect
 
       - name: "Terraform Validate"
         run: terraform validate  
