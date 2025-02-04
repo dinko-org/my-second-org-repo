@@ -1,4 +1,4 @@
 resource "azurerm_resource_group" "example" {
-  name     = "example-rg"
+  name     = "dinko-tf-rg"
   location = "westeurope"
 }
