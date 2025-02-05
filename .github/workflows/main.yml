@@ -17,7 +17,7 @@ env:
  
   
 jobs:
-  build-and-deploy:
+  terraform_plan:
     runs-on: ubuntu-latest
     steps:
 
@@ -60,17 +60,42 @@ jobs:
       
       # Step 5: Terraform Plan
       - name: Terraform Plan
-        run: terraform plan -out=tfplantest
+        run: terraform plan -out=tfplan
         
       - name: "Upload Terraform Plan"
         uses: actions/upload-artifact@v4
         with:
-          name: tfplantest
-          path: tfplantest
+          name: tfplan
+          path: tfplan
+
+          # Create string output of Terraform Plan
+      - name: Create String Output
+        id: tf-plan-string
+        run: |
+          TERRAFORM_PLAN=$(terraform show -no-color tfplan)
+        
+          delimiter="$(openssl rand -hex 8)"
+          echo "summary<<${delimiter}" >> $GITHUB_OUTPUT
+          echo "## Terraform Plan Output" >> $GITHUB_OUTPUT
+          echo "<details><summary>Click to expand</summary>" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
+          echo '```terraform' >> $GITHUB_OUTPUT
+          echo "$TERRAFORM_PLAN" >> $GITHUB_OUTPUT
+          echo '```' >> $GITHUB_OUTPUT
+          echo "</details>" >> $GITHUB_OUTPUT
+          echo "${delimiter}" >> $GITHUB_OUTPUT
+        
+    # Publish Terraform Plan as task summary
+      - name: Publish Terraform Plan to Task Summary
+        env:
+          SUMMARY: ${{ steps.tf-plan-string.outputs.summary }}
+        run: |
+          echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY
+          
         
   apply:
     name: "Terraform Apply"
-    needs: build-and-deploy
+    needs: terraform_plan
     runs-on: ubuntu-latest
     environment: production  # This ensures manual approval is required
     steps:
@@ -94,8 +119,8 @@ jobs:
       - name: Download Terraform Plan
         uses: actions/download-artifact@v4
         with:
-            name: tfplantest
+            name: tfplan
 
       - name: "Terraform Apply (Manual Approval Required)"
-        run: terraform apply tfplantest
+        run: terraform apply tfplan
         
