@@ -3,8 +3,15 @@ on:
 #  push:
  #   branches:
 #      - main
-  workflow_dispatch:
-
+    workflow_dispatch:
+        inputs:
+            rg_name:
+                description: "RG Name - no spaces or special characters"
+                required: True
+            rg_location:
+                description: "RG Location - no spaces or special characters"
+                required: True
+                
 permissions:
   id-token: write
   contents: read
@@ -14,6 +21,8 @@ env:
   ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
   ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
   ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
+  TF_VAR_rg_name: ${{ inputs.rg_name }}
+  TF_VAR_rg_location: ${{ inputs.rg_location }}
  
   
 jobs:
