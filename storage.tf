@@ -18,5 +18,5 @@ resource "random_string" "storage_suffix" {
   length  = 3
   upper   = false
   special = false
-  number  = true
+  numeric  = true
 }
