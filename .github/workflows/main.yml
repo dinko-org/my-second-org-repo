@@ -4,13 +4,13 @@ on:
  #   branches:
 #      - main
     workflow_dispatch:
-        inputs:
-            rg_name:
-                description: "RG Name - no spaces or special characters"
-                required: True
-            rg_location:
-                description: "RG Location - no spaces or special characters"
-                required: True
+  #      inputs:
+  #          rg_name:
+  #              description: "RG Name - no spaces or special characters"
+  #              required: True
+  #          rg_location:
+  #              description: "RG Location - no spaces or special characters"
+  #              required: True
                 
 permissions:
   id-token: write
