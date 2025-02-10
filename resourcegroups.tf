@@ -14,7 +14,7 @@ resource "azurerm_resource_group" "dev" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name = var.rg_name
+  name = var.AZURE_RESOURCE_GROUP_NAME
   location = var.rg_location
 }
 
