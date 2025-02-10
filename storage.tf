@@ -5,3 +5,11 @@ resource "azurerm_storage_account" "example" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
 }
+
+resource "azurerm_storage_account" "newsa" {
+  name                     = "oknidlsa"
+  resource_group_name      = var.rg_name
+  location                 = var.rg_location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
