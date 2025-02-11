@@ -1,6 +1,6 @@
-variable "AZURE_RESOURCE_GROUP_NAME" {
-  description = "The name of the resource group in which the resources will be created."
-  type = string
+variable "environments" {
+  type    = list(string)
+  default = ["dev", "test", "production"]
 }
 
 variable "rg_location" {
@@ -8,3 +8,9 @@ variable "rg_location" {
   type = string
   default = "westeurope"
 }
+
+variable "prefix" {
+  type    = string
+  default = "rg-dinko"
+}
+
