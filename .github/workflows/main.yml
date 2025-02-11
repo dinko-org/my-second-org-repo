@@ -31,19 +31,6 @@ jobs:
     environment: dev
     steps:
 
-      # Step 2: Authenticate with Azure using OIDC (More Secure than Secrets)
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
-      - name: 'Run az commands'
-        run: |
-          az account show
-
-
      # Step 1: Checkout Repo
       - name: Checkout repository
         uses: actions/checkout@v4
