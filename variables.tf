@@ -3,7 +3,7 @@ variable "environments" {
   default = ["dev", "test", "production"]
 }
 
-variable "rg_location" {
+variable "location" {
   description = "The location of the resource group in which the resources will be created."
   type = string
   default = "westeurope"
