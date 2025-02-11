@@ -94,7 +94,7 @@ jobs:
     name: "deploy to prod"
     needs: terraform_analysis
     runs-on: ubuntu-latest
-    environment: prod
+    environment: production
     steps:
       - name: "Checkout Repository"
         uses: actions/checkout@v4
