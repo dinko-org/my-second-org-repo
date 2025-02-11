@@ -15,8 +15,7 @@ resource "azurerm_resource_group" "dev" {
 }
 */
 resource "azurerm_resource_group" "example" {
-  name = var.AZURE_RESOURCE_GROUP_NAME
-  location = var.rg_location
+  for_each = { for env in var.environments : env => env }
+  name     = "${var.prefix}-${each.value}"
+  location = var.location
 }
-
-
