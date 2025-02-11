@@ -90,57 +90,9 @@ jobs:
           echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY
           
         
-  deploy-to-dev:
-    name: "deploy to dev"
-    needs: terraform_analysis
-    runs-on: ubuntu-latest
-    environment: dev
-    steps:
-      - name: "Checkout Repository"
-        uses: actions/checkout@v4
-
-      - name: "Setup Terraform"
-        uses: hashicorp/setup-terraform@v3
-
-      - name: "Terraform Init"
-        run: terraform init
-
-    # Download saved plan from artifacts  
-      - name: Download Terraform Plan
-        uses: actions/download-artifact@v4
-        with:
-            name: tfplan
-
-      - name: "Terraform Apply to Dev"
-        run: terraform apply tfplan
-
-  deploy-to-test:
-    name: "deploy to test"
-    needs: deploy-to-dev
-    runs-on: ubuntu-latest
-    environment: test
-    steps:
-      - name: "Checkout Repository"
-        uses: actions/checkout@v4
-
-      - name: "Setup Terraform"
-        uses: hashicorp/setup-terraform@v3
-
-      - name: "Terraform Init"
-        run: terraform init
-
-    # Download saved plan from artifacts  
-      - name: Download Terraform Plan
-        uses: actions/download-artifact@v4
-        with:
-            name: tfplan
-
-      - name: "Terraform Apply to Test"
-        run: terraform apply tfplan 
-        
   deploy-to-prod:
     name: "deploy to prod"
-    needs: deploy-to-test
+    needs: terraform_analysis
     runs-on: ubuntu-latest
     environment: prod
     steps:
