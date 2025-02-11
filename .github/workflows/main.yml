@@ -112,7 +112,7 @@ jobs:
             name: tfplan
 
       - name: "Terraform Apply to Dev"
-        run: terraform apply tfplan -var "resource_group_name=${{secrets.AZURE_RESOURCE_GROUP_NAME}}"
+        run: terraform apply tfplan
 
   deploy-to-test:
     name: "deploy to test"
@@ -136,7 +136,7 @@ jobs:
             name: tfplan
 
       - name: "Terraform Apply to Test"
-        run: terraform apply tfplan -var "resource_group_name=${{secrets.AZURE_RESOURCE_GROUP_NAME}}"
+        run: terraform apply tfplan 
         
   deploy-to-prod:
     name: "deploy to prod"
@@ -160,5 +160,5 @@ jobs:
             name: tfplan
 
       - name: "Terraform Apply to Prod"
-        run: terraform apply tfplan -var "resource_group_name=${{secrets.AZURE_RESOURCE_GROUP_NAME}}"
+        run: terraform apply tfplan
         
