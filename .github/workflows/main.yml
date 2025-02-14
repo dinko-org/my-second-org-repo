@@ -28,7 +28,7 @@ env:
 jobs:
   terraform_analysis:
     runs-on: ubuntu-latest
-    environment: dev
+  #  environment: dev
     steps:
 
      # Step 1: Checkout Repo
